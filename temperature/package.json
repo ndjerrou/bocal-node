@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js Vienne",
+    "start": "node index.js",
     "coord": "node getCoordinates.js"
   },
   "keywords": [],
@@ -12,5 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.27.2"
+  },
+  "devDependencies": {
+    "chalk": "^5.0.1"
   }
 }
