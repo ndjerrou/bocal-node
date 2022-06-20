@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js Paris",
+    "start": "node index.js Vienne",
     "coord": "node getCoordinates.js"
   },
   "keywords": [],

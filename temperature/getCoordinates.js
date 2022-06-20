@@ -1,8 +1,5 @@
 const axios = require('axios');
 
-const url =
-  'https://api.openweathermap.org/data/2.5/weather?q=London&appid=75df4771c32af58b732d3f749b83215d';
-
 // making a request using axios using the operation GET
 
 // axios.get takes a certain amount of time du to its nature (firing up an http request)
@@ -11,12 +8,20 @@ const url =
 
 // role de async/await
 
-async function getCoordinates() {
-  const resultat = await axios.get(url);
-  console.log('L16 = ', resultat.data);
+async function getCoordinates(city) {
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=75df4771c32af58b732d3f749b83215d`;
 
-  const lat = // ??
-  const longitude = // ??
+  const resultat = await axios.get(url);
+
+  const lat = resultat.data.coord.lat;
+  const longitude = resultat.data.coord.lon;
+
+  // it returns a promise because the function is async
+  return {
+    lat, // lat: lat
+    longitude, // longitude: longitude
+  };
 }
 
-getCoordinates();
+// export my function
+module.exports = getCoordinates;
