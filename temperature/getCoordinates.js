@@ -12,7 +12,6 @@ async function getCoordinates(city) {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=75df4771c32af58b732d3f749b83215d`;
 
   const { data: resultat } = await axios.get(url);
-  console.log(resultat);
   //   const lat = resultat.data.coord.lat;
   //   const longitude = resultat.data.coord.lon;
 

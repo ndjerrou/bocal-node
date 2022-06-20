@@ -1,11 +1,17 @@
 const axios = require('axios');
 
-async function getTemperature(coordinates) {
-  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.lat}&lon=${coordinates.longitude}&appid=75df4771c32af58b732d3f749b83215d&units=metric`;
+async function getTemperature({ lat, longitude }) {
+  //   const { lat, longitude } = coordinates;
 
-  const resultat = await axios.get(url);
+  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${longitude}&appid=75df4771c32af58b732d3f749b83215d&units=metric`;
 
-  return resultat.data.main.temp;
+  const { data } = await axios.get(url);
+
+  const {
+    main: { temp: temperature },
+  } = data;
+
+  return temperature;
 }
 
 module.exports = getTemperature;
