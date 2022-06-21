@@ -71,6 +71,12 @@ app.listen(3000, () => console.log('Server listenning on port 3000'));
 
 // EXO
 
-// Se familiariser avec le code + jouer un peu avec
+// Créer le combo DELETE /products/id - UPDATE /products/id (méthode PUT sur postman)
 
-// Comment faire pour que notre base de données soit toujours identique même si on redémarre le serveur ?
+// Récupérer l'id provenant du client
+
+// Supprimer le produit qui correspond à l'id reçu
+
+// Mettre à jour notre base de données locales
+
+// renvoyer une réponse au client (plusieurs cas possibles)
