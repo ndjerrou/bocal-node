@@ -53,3 +53,9 @@ app.post('/products', (req, res) => {
 });
 
 app.listen(3000, () => console.log('Server listenning on port 3000'));
+
+// EXO
+
+// Se familiariser avec le code + jouer un peu avec
+
+// Comment faire pour que notre base de données soit toujours identique même si on redémarre le serveur ?
