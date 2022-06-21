@@ -104,7 +104,7 @@ app.put('/products/:id', (req, res) => {
       //getting the corresponding product to modify
       for (let key in req.body) {
         // we iterate over the body of the request
-        product[key] = req.body[key];
+        product[key] = req.body[key]; //dynamically search for a property inside my object product
       }
     }
     return product;
