@@ -95,6 +95,36 @@ app.delete('/products/:id', (req, res) => {
   });
 });
 
+app.put('/products/:id', (req, res) => {
+  const { id } = req.params;
+
+  const updatedProducts = products.map((product) => {
+    console.log(product);
+    if (product.id === id) {
+      //getting the corresponding product to modify
+      for (let key in req.body) {
+        // we iterate over the body of the request
+        product[key] = req.body[key];
+      }
+    }
+    return product;
+  });
+
+  const productsString = JSON.stringify(updatedProducts);
+
+  fs.writeFile(pathToData, productsString, (err) => {
+    if (err)
+      return res.status(500).send({ message: 'Error writing into the DB' });
+  });
+
+  res.status(200).send({
+    message: 'Updated successfully',
+    data: {
+      updatedProducts,
+    },
+  });
+});
+
 app.listen(3000, () => console.log('Server listenning on port 3000'));
 
 // EXO
