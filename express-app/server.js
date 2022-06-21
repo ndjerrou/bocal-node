@@ -99,12 +99,14 @@ app.listen(3000, () => console.log('Server listenning on port 3000'));
 
 // EXO
 
-// Créer le combo DELETE /products/id - UPDATE /products/id (méthode PUT sur postman)
+// Créer le combo UPDATE /products/id (méthode PUT sur postman)
 
 // Récupérer l'id provenant du client
 
-// Supprimer le produit qui correspond à l'id reçu
+// Récupérer la data du client pour savoir quoi updater
 
-// Mettre à jour notre base de données locales
+// Mettre à jour le produit
+
+// Mettre à jour notre DB
 
 // renvoyer une réponse au client (plusieurs cas possibles)
