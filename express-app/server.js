@@ -1,13 +1,23 @@
+const fs = require('fs');
 const express = require('express');
 
 const app = express();
 
 app.use(express.json()); //middleware
 
-const products = [
-  { id: 1, name: 'xiaomi x11', price: 30 },
-  { id: 2, name: 'xiaomi x12', price: 20 },
-];
+let products = [];
+
+const pathToData = `${__dirname}/datA/products.json`;
+
+fs.readFile(pathToData, (err, data) => {
+  if (err) console.error('Reading file impossible');
+  else {
+    const productsString = data.toString();
+    products = JSON.parse(productsString);
+
+    console.log(products);
+  }
+});
 
 // combos / RESTFull --> comment architecture notre API
 
@@ -36,16 +46,21 @@ app.get('/products', (req, res) => {
 });
 
 app.post('/products', (req, res) => {
-  console.log(req.body);
-
   products.push({
     id: products.length + 1,
     name: req.body.name,
     price: req.body.price,
   });
 
-  res.send({
-    success: 'Great ! ',
+  const productsString = JSON.stringify(products);
+
+  fs.writeFile(pathToData, productsString, (err) => {
+    if (err)
+      return res.status(500).send({ message: 'Error writing into the DB' });
+  });
+
+  res.status(201).send({
+    message: 'Successfully created a new ressource ! ',
     data: {
       products,
     },
