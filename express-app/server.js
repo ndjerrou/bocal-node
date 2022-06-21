@@ -1,5 +1,6 @@
 const fs = require('fs');
 const express = require('express');
+const { v4: uuidv4 } = require('uuid');
 
 const app = express();
 
@@ -47,7 +48,7 @@ app.get('/products', (req, res) => {
 
 app.post('/products', (req, res) => {
   products.push({
-    id: products.length + 1,
+    id: uuidv4(),
     name: req.body.name,
     price: req.body.price,
   });
@@ -61,6 +62,33 @@ app.post('/products', (req, res) => {
 
   res.status(201).send({
     message: 'Successfully created a new ressource ! ',
+    data: {
+      products,
+    },
+  });
+});
+
+app.delete('/products/:id', (req, res) => {
+  //products/3 ==> req.params.id qui vaut 3
+  // const id = req.params.id
+
+  const { id } = req.params; //string
+
+  const idx = products.findIndex((el) => {
+    return el.id === id;
+  });
+
+  products.splice(idx, 1);
+
+  const productsString = JSON.stringify(products);
+
+  fs.writeFile(pathToData, productsString, (err) => {
+    if (err)
+      return res.status(500).send({ message: 'Error writing into the DB' });
+  });
+
+  res.status(200).send({
+    message: 'Succesfully deleted the product',
     data: {
       products,
     },
